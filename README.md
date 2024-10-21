@@ -17,6 +17,19 @@ It has been developed and released by the [Amnesty International Security Lab](h
 > MVT is a forensic research tool intended for technologists and investigators. It requires understanding digital forensics and using command-line tools. This is not intended for end-user self-assessment. If you are concerned with the security of your device please seek reputable expert assistance.
 >
 
+## Pegasus
+
+Эксплойт Pegasus использует различные уязвимости для удаленной установки шпионского ПО на устройствах iOS, включая версии до 16.0.3. 
+В частности, по состоянию на март 2023 года, Pegasus мог использовать нулевой клик эксплойт, который не требует взаимодействия с жертвой для установки.
+Основные эксплойты
+CVE-2023-41061: Уязвимость в Wallet, которая может привести к выполнению произвольного кода при обработке специально подготовленного вложения.
+CVE-2023-41064: Уязвимость переполнения буфера в компоненте Image I/O, которая также может привести к выполнению произвольного кода при обработке специально подготовленного изображения.
+Эти уязвимости были частью цепочки эксплойтов под названием BLASTPASS, которая могла скомпрометировать iPhone без какого-либо взаимодействия со стороны жертвы. Эксплойт использовал вложения PassKit с вредоносными изображениями, отправленными через iMessage от учетной записи атакующего.
+Подробности
+Zero-click атака: Pegasus использует нулевой клик подход, что означает, что жертве не нужно нажимать на ссылку или выполнять какое-либо действие для того, чтобы эксплойт сработал.
+Обнаружение: Уязвимости были обнаружены лабораторией Citizen Lab и быстро исправлены Apple в обновлениях безопасности.
+Таким образом, Pegasus использует сложные эксплойты для удаленной установки шпионского ПО на устройствах iOS, включая версии до 16.0.3, используя нулевые клики и уязвимости в системных компонентах.
+
 ### Indicators of Compromise
 
 MVT supports using public [indicators of compromise (IOCs)](https://github.com/mvt-project/mvt-indicators) to scan mobile devices for potential traces of targeting or infection by known spyware campaigns. This includes IOCs published by [Amnesty International](https://github.com/AmnestyTech/investigations/) and other  research groups.
