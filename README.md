@@ -52,6 +52,60 @@ Zero-click атака: Pegasus использует нулевой клик по
 Заключение
 Следуя этим рекомендациям, вы сможете значительно повысить уровень безопасности вашего устройства Android и снизить риск заражения шпионским ПО, таким как Pegasus. Если у вас есть дополнительные вопросы или нужна помощь с конкретными настройками, дайте знать!
 
+## CHEK EXPLOIT
+
+Как проверить андройд с помощью MVT на наличие эксплойтов
+Sources
+forum.qubes favicon
+kaspersky.ru favicon
+youtube.com favicon
+blog.rsisecurity.com favicon
+us.norton.com favicon
+View 5 more
+Answer
+Чтобы проверить устройство Android на наличие эксплойтов и шпионского ПО Pegasus с помощью Mobile Verification Toolkit (MVT), выполните следующие шаги:
+Шаги для проверки Android с помощью MVT
+Установите необходимые инструменты:
+Убедитесь, что у вас установлен Python и необходимые зависимости. Для этого выполните следующие команды в терминале:
+bash
+sudo apt update
+sudo apt install python3 python3-pip adb
+
+Скачайте и установите MVT:
+Клонируйте репозиторий MVT с GitHub:
+bash
+git clone https://github.com/mvt-project/mvt.git
+cd mvt
+
+Установите необходимые Python-библиотеки:
+bash
+pip3 install -r requirements.txt
+
+Подготовьте устройство:
+Включите режим разработчика на вашем Android-устройстве. Для этого перейдите в Настройки > О телефоне и несколько раз нажмите на Номер сборки.
+Включите Отладку по USB в разделе Настройки > Для разработчиков.
+Подключите устройство к компьютеру:
+Подключите ваше Android-устройство к компьютеру с помощью USB-кабеля.
+Создайте резервную копию данных устройства:
+Используйте ADB для создания резервной копии данных вашего устройства:
+bash
+adb backup -apk -shared -all -f backup.ab
+
+Проверьте резервную копию с помощью MVT:
+Распакуйте резервную копию с помощью android-backup-extractor:
+bash
+java -jar /path/to/android-backup-extractor/abe.jar unpack backup.ab backup.tar
+tar xvf backup.tar
+
+Выполните проверку на наличие индикаторов компрометации (IOC) с помощью MVT:
+bash
+./mvt-android check-backup --iocs /usr/local/share/mvt-iocs/pegasus.stix2 --output .
+
+Анализируйте результаты:
+После завершения проверки MVT создаст отчеты, в которых будут указаны возможные индикаторы компрометации. Обратите внимание на любые предупреждения и рекомендации.
+Заключение
+Используя Mobile Verification Toolkit (MVT), вы можете проверить свое Android-устройство на наличие шпионского ПО Pegasus и других угроз. 
+
 ### Indicators of Compromise
 
 MVT supports using public [indicators of compromise (IOCs)](https://github.com/mvt-project/mvt-indicators) to scan mobile devices for potential traces of targeting or infection by known spyware campaigns. This includes IOCs published by [Amnesty International](https://github.com/AmnestyTech/investigations/) and other  research groups.
