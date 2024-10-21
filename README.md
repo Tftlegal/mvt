@@ -54,31 +54,26 @@ Zero-click атака: Pegasus использует нулевой клик по
 
 ## CHEK EXPLOIT
 
-Как проверить андройд с помощью MVT на наличие эксплойтов
-Sources
-forum.qubes favicon
-kaspersky.ru favicon
-youtube.com favicon
-blog.rsisecurity.com favicon
-us.norton.com favicon
-View 5 more
-Answer
+Как проверить андройд с помощью MVT на наличие эксплойтов ?
+kaspersky.ru 
+
 Чтобы проверить устройство Android на наличие эксплойтов и шпионского ПО Pegasus с помощью Mobile Verification Toolkit (MVT), выполните следующие шаги:
 Шаги для проверки Android с помощью MVT
 Установите необходимые инструменты:
 Убедитесь, что у вас установлен Python и необходимые зависимости. Для этого выполните следующие команды в терминале:
-bash
+
 sudo apt update
 sudo apt install python3 python3-pip adb
 
 Скачайте и установите MVT:
 Клонируйте репозиторий MVT с GitHub:
-bash
+
 git clone https://github.com/mvt-project/mvt.git
+
 cd mvt
 
 Установите необходимые Python-библиотеки:
-bash
+
 pip3 install -r requirements.txt
 
 Подготовьте устройство:
@@ -88,17 +83,20 @@ pip3 install -r requirements.txt
 Подключите ваше Android-устройство к компьютеру с помощью USB-кабеля.
 Создайте резервную копию данных устройства:
 Используйте ADB для создания резервной копии данных вашего устройства:
-bash
+
+
 adb backup -apk -shared -all -f backup.ab
 
 Проверьте резервную копию с помощью MVT:
 Распакуйте резервную копию с помощью android-backup-extractor:
-bash
+
 java -jar /path/to/android-backup-extractor/abe.jar unpack backup.ab backup.tar
+
 tar xvf backup.tar
 
 Выполните проверку на наличие индикаторов компрометации (IOC) с помощью MVT:
-bash
+
+
 ./mvt-android check-backup --iocs /usr/local/share/mvt-iocs/pegasus.stix2 --output .
 
 Анализируйте результаты:
